@@ -52,7 +52,4 @@ public class Reservas {
 	public Reservas() {
 		super();
 	}
-	
-	
-	
 }
