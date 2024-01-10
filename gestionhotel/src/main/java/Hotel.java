@@ -1,59 +1,56 @@
-
+import java.util.ArrayList;
 
 public class Hotel {
 	
-	public String peticion;
+	public String nombre;
+	public ArrayList<String> conjuntoHabitaciones = new ArrayList<String>();
+	public String categoria;
 	
-	public String factura;
-	
-	public int Habitaciones;
-	
-	public String cliente;
-
-	public String getPeticion() {
-		return peticion;
-	}
-
-	public void setPeticion(String peticion) {
-		this.peticion = peticion;
-	}
-
-	public String getFactura() {
-		return factura;
-	}
-
-	public void setFactura(String factura) {
-		this.factura = factura;
-	}
-
-	public int getHabitaciones() {
-		return Habitaciones;
-	}
-
-	public void setHabitaciones(int habitaciones) {
-		Habitaciones = habitaciones;
-	}
-
-	public String getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
-	}
-
-	public Hotel(String peticion, String factura, int habitaciones, String cliente) {
-		super();
-		this.peticion = peticion;
-		this.factura = factura;
-		Habitaciones = habitaciones;
-		this.cliente = cliente;
-	}
 
 	public Hotel() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+	public Hotel(String nombre, ArrayList<String> conjuntoHabitaciones, String categoria) {
+		super();
+		this.nombre = nombre;
+		this.conjuntoHabitaciones = conjuntoHabitaciones;
+		this.categoria = categoria;
+	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public ArrayList<String> getConjuntoHabitaciones() {
+		return conjuntoHabitaciones;
+	}
+
+
+	public void setConjuntoHabitaciones(ArrayList<String> conjuntoHabitaciones) {
+		this.conjuntoHabitaciones = conjuntoHabitaciones;
+	}
+
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
+	
 	
 	
 	
