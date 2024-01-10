@@ -7,7 +7,7 @@ public class Reservas {
 	
 	public int Importe;
 	
-	public String estado = "Libre, Ocupado, No disponible";
+	public String estado;
 
 	public Reservas(String cliente, String fechas, int importe, String estado) {
 		super();
