@@ -1,4 +1,3 @@
-
 public class Habitacion {
 
 	public int numeroCamas;
