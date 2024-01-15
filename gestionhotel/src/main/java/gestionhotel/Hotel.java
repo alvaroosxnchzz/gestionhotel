@@ -1,9 +1,10 @@
+package gestionhotel;
 import java.util.ArrayList;
 
 public class Hotel {
 	
 	public String nombre;
-	public ArrayList<String> conjuntoHabitaciones = new ArrayList<String>();
+	public ArrayList<Habitacion> conjuntoHabitaciones = new ArrayList<Habitacion>();
 	public String categoria;
 	
 
@@ -13,7 +14,7 @@ public class Hotel {
 	}
 
 
-	public Hotel(String nombre, ArrayList<String> conjuntoHabitaciones, String categoria) {
+	public Hotel(String nombre, ArrayList<Habitacion> conjuntoHabitaciones, String categoria) {
 		super();
 		this.nombre = nombre;
 		this.conjuntoHabitaciones = conjuntoHabitaciones;
@@ -29,14 +30,18 @@ public class Hotel {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public void addHabitacion(Habitacion h) {
+		conjuntoHabitaciones.add(h);
+	}
 
 
-	public ArrayList<String> getConjuntoHabitaciones() {
+	public ArrayList<Habitacion> getConjuntoHabitaciones() {
 		return conjuntoHabitaciones;
 	}
 
 
-	public void setConjuntoHabitaciones(ArrayList<String> conjuntoHabitaciones) {
+	public void setConjuntoHabitaciones(ArrayList<Habitacion> conjuntoHabitaciones) {
 		this.conjuntoHabitaciones = conjuntoHabitaciones;
 	}
 

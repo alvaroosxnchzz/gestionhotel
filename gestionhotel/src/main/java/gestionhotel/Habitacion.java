@@ -1,17 +1,26 @@
+package gestionhotel;
 public class Habitacion {
-
-	public int numeroCamas;
+	
+	public int numHabitacion;
+	public String numeroCamas;
 	public String categoria;
-	public String tipo;
 	public double precio;
 	public String estado;
 	
-	public Habitacion(int numeroCamas, String categoria, String tipo, double precio, String estado) {
+	public Habitacion(int numHabitacion, String numeroCamas, String categoria, String tipo, double precio, String estado) {
+		this.numHabitacion = numHabitacion;
 		this.numeroCamas = numeroCamas;
 		this.categoria = categoria;
-		this.tipo = tipo;
 		this.precio = precio;
 		this.estado = estado;
+	}
+
+	public int getNumHabitacion() {
+		return numHabitacion;
+	}
+
+	public void setNumHabitacion(int numHabitacion) {
+		this.numHabitacion = numHabitacion;
 	}
 
 	public Habitacion() {
@@ -19,11 +28,11 @@ public class Habitacion {
 		// TODO Esbozo de constructor generado automáticamente
 	}
 
-	public int getNumeroCamas() {
+	public String getNumeroCamas() {
 		return numeroCamas;
 	}
 
-	public void setNumeroCamas(int numeroCamas) {
+	public void setNumeroCamas(String numeroCamas) {
 		this.numeroCamas = numeroCamas;
 	}
 
@@ -35,13 +44,6 @@ public class Habitacion {
 		this.categoria = categoria;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 	public double getPrecio() {
 		return precio;
