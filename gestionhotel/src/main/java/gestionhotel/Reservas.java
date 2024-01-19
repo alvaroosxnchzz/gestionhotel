@@ -1,5 +1,7 @@
 package gestionhotel;
 
+import java.time.LocalDate;
+
 public class Reservas {
 	
 	private int codigoReserva;
@@ -8,19 +10,22 @@ public class Reservas {
 	
 	private double importe;
 	
-	private String fecha;
+	private LocalDate fechaEntrada;
+	
+	private LocalDate fechaSalida;
 
-	public Reservas(int codigoReserva, String cliente, double importe, String fecha) {
+	public Reservas(int codigoReserva, String cliente, double importe, LocalDate fechaEntrada, LocalDate fechaSalida) {
 		super();
 		this.codigoReserva = codigoReserva;
 		this.cliente = cliente;
 		this.importe = importe;
-		this.fecha = fecha;
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = fechaSalida;
 	}
 
 	public Reservas() {
 		super();
-		// TODO Auto-generated constructor stub
+		// TODO Esbozo de constructor generado automáticamente
 	}
 
 	public int getCodigoReserva() {
@@ -47,13 +52,25 @@ public class Reservas {
 		this.importe = importe;
 	}
 
-	public String getFecha() {
-		return fecha;
+	public LocalDate getFechaEntrada() {
+		return fechaEntrada;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFechaEntrada(LocalDate fechaEntrada) {
+		this.fechaEntrada = fechaEntrada;
 	}
+
+	public LocalDate getFechaSalida() {
+		return fechaSalida;
+	}
+
+	public void setFechaSalida(LocalDate fechaSalida) {
+		this.fechaSalida = fechaSalida;
+	}
+	
+	
+
+	
 	
 	
 	
