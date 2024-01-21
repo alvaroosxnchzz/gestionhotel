@@ -15,13 +15,8 @@ public class Hotel {
 
 
 
-	public Hotel(String nombre, ArrayList<Habitacion> conjuntoHabitaciones, ArrayList<Reservas> totalReservas,
-			String categoria) {
-		super();
+	public Hotel(String nombre) {
 		this.nombre = nombre;
-		this.conjuntoHabitaciones = conjuntoHabitaciones;
-		this.totalReservas = totalReservas;
-		this.categoria = categoria;
 	}
 
 
@@ -37,6 +32,10 @@ public class Hotel {
 	public void addHabitacion(Habitacion h) {
 		conjuntoHabitaciones.add(h);
 	}
+	
+	public void addReserva(Reservas r){
+        totalReservas.add(r);
+    }
 
 
 	public ArrayList<Habitacion> getConjuntoHabitaciones() {
