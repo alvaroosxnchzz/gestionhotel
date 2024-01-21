@@ -5,19 +5,22 @@ public class Hotel {
 	
 	public String nombre;
 	public ArrayList<Habitacion> conjuntoHabitaciones = new ArrayList<Habitacion>();
+	public ArrayList<Reservas> totalReservas = new ArrayList<Reservas>();
 	public String categoria;
 	
 
-	public Hotel() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 
-	public Hotel(String nombre, ArrayList<Habitacion> conjuntoHabitaciones, String categoria) {
+
+
+
+	public Hotel(String nombre, ArrayList<Habitacion> conjuntoHabitaciones, ArrayList<Reservas> totalReservas,
+			String categoria) {
 		super();
 		this.nombre = nombre;
 		this.conjuntoHabitaciones = conjuntoHabitaciones;
+		this.totalReservas = totalReservas;
 		this.categoria = categoria;
 	}
 
@@ -54,6 +57,17 @@ public class Hotel {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
+
+	public ArrayList<Reservas> getTotalReservas() {
+		return totalReservas;
+	}
+
+
+	public void setTotalReservas(ArrayList<Reservas> totalReservas) {
+		this.totalReservas = totalReservas;
+	}
+	
 	
 	
 	
