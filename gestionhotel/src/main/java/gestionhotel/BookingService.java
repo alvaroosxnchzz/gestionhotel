@@ -22,9 +22,17 @@ public class BookingService {
             }
         }
 		
+		for(Habitacion hab : h.getConjuntoHabitaciones()){
+            if( habitacionesLibres.get(hab.getNumHabitacion()-1) && (hab.getEstado().equals("No disponible") || hab.getNumeroCamas() < numPersonas) ){
+                habitacionesLibres.set(hab.getNumHabitacion()-1, false);
+            }
+        }
+
+        
+        return habitacionesLibres;
 		
 		
-		return habitacionesLibres;
+	
 		
 	}
 	
