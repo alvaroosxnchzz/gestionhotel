@@ -2,12 +2,12 @@ package gestionhotel;
 public class Habitacion {
 	
 	public int numHabitacion;
-	public String numeroCamas;
+	public int numeroCamas;
 	public String categoria;
 	public double precio;
 	public String estado;
 	
-	public Habitacion(int numHabitacion, String numeroCamas, String categoria, String tipo, double precio, String estado) {
+	public Habitacion(int numHabitacion, int numeroCamas, String categoria, String tipo, double precio, String estado) {
 		this.numHabitacion = numHabitacion;
 		this.numeroCamas = numeroCamas;
 		this.categoria = categoria;
@@ -28,11 +28,11 @@ public class Habitacion {
 		// TODO Esbozo de constructor generado automáticamente
 	}
 
-	public String getNumeroCamas() {
+	public int getNumeroCamas() {
 		return numeroCamas;
 	}
 
-	public void setNumeroCamas(String numeroCamas) {
+	public void setNumeroCamas(int numeroCamas) {
 		this.numeroCamas = numeroCamas;
 	}
 
