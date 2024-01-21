@@ -10,15 +10,21 @@ public class Reservas {
 	
 	private double importe;
 	
+	private int numHabitacion;
+	
 	private LocalDate fechaEntrada;
 	
 	private LocalDate fechaSalida;
 
-	public Reservas(int codigoReserva, String cliente, double importe, LocalDate fechaEntrada, LocalDate fechaSalida) {
+	
+
+	public Reservas(int codigoReserva, String cliente, double importe, int numHabitacion, LocalDate fechaEntrada,
+			LocalDate fechaSalida) {
 		super();
 		this.codigoReserva = codigoReserva;
 		this.cliente = cliente;
 		this.importe = importe;
+		this.numHabitacion = numHabitacion;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
 	}
@@ -67,6 +73,15 @@ public class Reservas {
 	public void setFechaSalida(LocalDate fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}
+
+	public int getNumHabitacion() {
+		return numHabitacion;
+	}
+
+	public void setNumHabitacion(int numHabitacion) {
+		this.numHabitacion = numHabitacion;
+	}
+	
 	
 	
 
