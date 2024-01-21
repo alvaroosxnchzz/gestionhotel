@@ -14,7 +14,13 @@ public class BookingService {
 	public ArrayList<Boolean> consultarDisponibilidad(LocalDate fechaEntrada, LocalDate fechaSalida, int numPersonas){
 		
 		ArrayList<Boolean> habitacionesLibres = new ArrayList<Boolean>(h.getConjuntoHabitaciones().size());
-		habitacionesLibres.replaceAll(ignored -> true);
+		habitacionesLibres.replaceAll(true);
+		
+		for(Reservas r : h.getTotalReservas()){
+            if( !fechaEntrada.isAfter(r.getFechaSalida()) && !fechaSalida.isBefore(r.getFechaEntrada()) ){
+                habitacionesLibres.set(r.getNumHabitacion() - 1, false);
+            }
+        }
 		
 		
 		
