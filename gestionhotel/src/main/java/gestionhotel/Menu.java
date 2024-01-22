@@ -1,6 +1,7 @@
 package gestionhotel;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,6 +23,15 @@ public class Menu {
         LocalDate fechaSalida = LocalDate.parse(sc.nextLine());
         System.out.println("Introduce el numero de personas");
         int numeroPersonas = sc.nextInt();
+        BookingService bs = new BookingService(hotel);
+        ArrayList<Boolean> habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
+
+        for (Habitacion h : hotel.getConjuntoHabitaciones()) {
+            if (habitacionesLibres.get(h.getNumHabitacion() - 1)) {
+                System.out.println(h.getNumHabitacion());
+                System.out.println(h.getPrecio());
+            }
+        }
 
     }
    }
