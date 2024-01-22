@@ -51,6 +51,20 @@ public class Menu {
 
     }
     
-    public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){}
+    public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){
+    	Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce el DNI");
+        String dni = sc.nextLine();
+        
+        boolean clienteNoExiste = !Clientes.comprobarCliente(dni);
+
+
+
+        if(clienteNoExiste){
+            Clientes.registrarNuevoCliente(dni);
+        }
+
+    }
     
    }
