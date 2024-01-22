@@ -28,4 +28,7 @@ public class Menu {
 
 
     }
+    
+    public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){}
+    
    }
