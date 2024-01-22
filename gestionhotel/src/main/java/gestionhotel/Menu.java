@@ -33,6 +33,22 @@ public class Menu {
                 System.out.println(h.getPrecio());
             }
         }
+        
+        System.out.println("¿Deseas reservar la habitación? S/N");
+        String respuesta = sc.nextLine();
+
+        if (respuesta.equalsIgnoreCase("S")) {
+            System.out.println("¿Qué habitación desea reservar?");
+            int numeroHabitacion = sc.nextInt();
+            sc.nextLine();
+
+            if (habitacionesLibres.get(numeroHabitacion - 1)) {
+                cu02(habitacionesLibres, fechaEntrada, fechaSalida, numeroHabitacion);
+            } else {
+                System.out.println("Esta habitación no está disponible");
+            }
+        }
+
     }
     
     public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){}
