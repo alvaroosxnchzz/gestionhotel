@@ -1,6 +1,7 @@
 package gestionhotel;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -24,4 +25,7 @@ public class Menu {
         int numeroPersonas = sc.nextInt();
 
     }
+    
+    public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){}
+    
    }
