@@ -64,6 +64,15 @@ public class Menu {
         if(clienteNoExiste){
             Clientes.registrarNuevoCliente(dni);
         }
+        
+        System.out.println("El coste del alojamiento es:" + "150€");
+        System.out.println("¿Deseas reservar la habitación? S/N");
+        String respuesta = sc.nextLine();
+        if(respuesta.equalsIgnoreCase("S")){
+            Reservas r = new Reservas(-1,dni, 150, numeroHabitacion, fechaEntrada, fechaSalida);
+            hotel.addReserva(r);
+            System.out.println(r.getCodigoReserva());
+        }
 
     }
     
