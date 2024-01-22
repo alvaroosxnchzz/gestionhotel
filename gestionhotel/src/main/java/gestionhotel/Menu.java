@@ -26,12 +26,6 @@ public class Menu {
         BookingService bs = new BookingService(hotel);
         ArrayList<Boolean> habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
 
-        for (Habitacion h : hotel.getConjuntoHabitaciones()) {
-            if (habitacionesLibres.get(h.getNumHabitacion() - 1)) {
-                System.out.println(h.getNumHabitacion());
-                System.out.println(h.getPrecio());
-            }
-        }
 
     }
    }
