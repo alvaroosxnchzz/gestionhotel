@@ -24,6 +24,11 @@ public class Menu {
         System.out.println("Introduce el numero de personas");
         int numeroPersonas = sc.nextInt();
         
+        //DEBE DEVOLVER LAS HABITACIONES DISPONIBLES DE CADA TIPO Y AHI ELIGO UNA DE ESAS
+        //CUANDO ELJO UN TIPO DE HABITACION SE RESTA UNA DE ESE TIPO SI ESTA DENTRO DE LA FECHA
+        //LA CLASE REEERVA DEBE INDICAR EL NUM DE CAMAS Y LA CATEOGIRA
+        //DESPUES INTRODUZCO LOS DATOS DEL CLIENT Y CONFRMO LA RESERVA Y ME DEVUELVE EL CODIGO DE LA RESERVA
+        //EL NUMERO DE HABITACION TE LO DA DESPUES EN EL CHECKIN, QUE INTRODUCES EL NUMERO DE RESERVA.
         BookingService bs = new BookingService(hotel);
         ArrayList<Boolean> habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
         
