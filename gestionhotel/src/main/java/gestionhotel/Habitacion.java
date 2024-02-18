@@ -1,17 +1,5 @@
 package gestionhotel;
-
-import javax.persistence.Id;
-
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
-
-@Entity
-@Table(name = "Habitacion")
-public class Habitacion{
-
-    
-    @Id
-    private int id;
+public class Habitacion {
 	
 	public int numHabitacion;
 	public int numeroCamas;
