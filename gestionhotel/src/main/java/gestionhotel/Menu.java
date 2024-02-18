@@ -6,12 +6,61 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static Hotel hotel;
+	private Hotel hotel;
+    private BookingService bs;
+    private Scanner sc = new Scanner(System.in);
 
-    public static void cargarHotel(String nombreHotel){
+
+    public void cargarHotel(){
+        hotel=new Hotel();
+        bs = new BookingService(hotel);
+    }
+
+    public void deslpegarMenu(){
+
+        int opcion;
+
+        System.out.println("### Menu Hotel ###");
+
+        do{
+
+            System.out.println("--------------------------");
+            System.out.println("1.Consultar disponibilidad y reserva de habitaciones");
+            System.out.println("2.Check-in");
+            System.out.println("3.Check-out");
+            System.out.println("4.Cancelar reserva");
+            System.out.println("5.Salir");
+            System.out.println("---------------------------");
+
+            System.out.println("Introduzca una opción");
+            opcion = sc.nextInt();
+
+            switch(opcion){
+
+                case 1:
+                    cu01();
+                    break;
+
+                case 2:
+                    cu02();
+                    break;
+
+                case 3:
+                    cu03();
+                    break;
+
+                case 4:
+                    cu04();
+                    break;
+
+                default:
 
 
-        hotel=new Hotel(nombreHotel);
+
+            }
+
+
+        }while(opcion != 5);
     }
 
     public static void cu01(){
@@ -74,8 +123,8 @@ public class Menu {
         System.out.println("¿Deseas reservar la habitación? S/N");
         String respuesta = sc.nextLine();
         if(respuesta.equalsIgnoreCase("S")){
-            Reservas r = new Reservas(-1,dni, 150, numeroHabitacion, fechaEntrada, fechaSalida);
-            hotel.addReserva(r);
+            Reserva r = new Reserva(-1,dni, 150, numeroHabitacion, fechaEntrada, fechaSalida);
+            Hotel.addReserva(r);
             System.out.println(r.getCodigoReserva());
         }
 
