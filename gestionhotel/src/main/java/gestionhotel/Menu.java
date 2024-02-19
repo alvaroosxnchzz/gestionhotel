@@ -4,64 +4,67 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import gestionhotel2.BookingService;
+import gestionhotel2.Hotel;
+
 public class Menu {
 
-	private Hotel hotel;
-    private BookingService bs;
-    private Scanner sc = new Scanner(System.in);
+	 private Hotel hotel;
+	    private BookingService bs;
+	    private Scanner sc = new Scanner(System.in);
 
 
-    public void cargarHotel(){
-        hotel=new Hotel();
-        bs = new BookingService(hotel);
-    }
+	    public void cargarHotel(){
+	        hotel=new Hotel();
+	        bs = new BookingService(hotel);
+	    }
 
-    public void deslpegarMenu(){
+	    public void deslpegarMenu(){
 
-        int opcion;
+	        int opcion;
 
-        System.out.println("### Menu Hotel ###");
+	        System.out.println("### Menu Hotel ###");
 
-        do{
+	        do{
 
-            System.out.println("--------------------------");
-            System.out.println("1.Consultar disponibilidad y reserva de habitaciones");
-            System.out.println("2.Check-in");
-            System.out.println("3.Check-out");
-            System.out.println("4.Cancelar reserva");
-            System.out.println("5.Salir");
-            System.out.println("---------------------------");
+	            System.out.println("--------------------------");
+	            System.out.println("1.Consultar disponibilidad y reserva de habitaciones");
+	            System.out.println("2.Check-in");
+	            System.out.println("3.Check-out");
+	            System.out.println("4.Cancelar reserva");
+	            System.out.println("5.Salir");
+	            System.out.println("---------------------------");
 
-            System.out.println("Introduzca una opción");
-            opcion = sc.nextInt();
+	            System.out.println("Introduzca una opción");
+	            opcion = sc.nextInt();
 
-            switch(opcion){
+	            switch(opcion){
 
-                case 1:
-                    cu01();
-                    break;
+	                case 1:
+	                    cu01();
+	                    break;
 
-                case 2:
-                    cu02();
-                    break;
+	                case 2:
+	                    cu03();
+	                    break;
 
-                case 3:
-                    cu03();
-                    break;
+	                case 3:
+	                    cu04();
+	                    break;
+	                    
+	                case 4:
+	                	cu05();
+	                	break;
 
-                case 4:
-                    cu04();
-                    break;
-
-                default:
-
-
-
-            }
+	                default:
 
 
-        }while(opcion != 5);
-    }
+
+	            }
+
+
+	        }while(opcion != 5);
+	    }
 
     public static void cu01(){
         Scanner sc = new Scanner(System.in);
