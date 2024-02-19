@@ -73,26 +73,5 @@ public class Cliente {
 		super();
 	}
 	
-	public static void registrarNuevoCliente(String dni){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Introduce su nombre");
-        String nombre = sc.nextLine();
-        System.out.println("Introduce su primer appellido");
-        String apellido1 = sc.nextLine();
-        System.out.println("Introduce su segundo apellido");
-        String apellido2 = sc.nextLine();
 
-        //DESPUES HAY QUE INTRODUCIR ESOS DATOS EN LA BBDD
-    }
-
-    /*
-    public static boolean comprobarCliente(String dni){
-        //COMPROBAR SI EL DNI EXISTE O NO EN LA BASE DE DATOS
-
-        return existe;
-    }
-    *
-     */
-	
-	
 }
