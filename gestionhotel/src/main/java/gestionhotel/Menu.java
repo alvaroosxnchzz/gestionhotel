@@ -111,6 +111,50 @@ public class Menu {
         int respuesta = sc.nextInt();
         boolean repetir = true;
         int precio = 0;
+        do{
+            switch(respuesta){
+                case 1: 
+                    if(habitacionesLibres.get("normal").get("cantidad") == 0){
+                        System.out.println("No hay habitaciones de este tipo");
+                        System.out.println("Introduzca opcion:");
+                        respuesta = sc.nextInt();
+                    }
+                    else{
+                        precio = habitacionesLibres.get("normal").get("precio");
+                        tipo = "normal";
+                        repetir = false;
+                    }
+                    break;
+                case 2:
+                    if(habitacionesLibres.get("business").get("cantidad") == 0){
+                        System.out.println("No hay habitaciones de este tipo");
+                        System.out.println("Introduzca opcion:");
+                        respuesta = sc.nextInt();
+                    }
+                    else{
+                        precio = habitacionesLibres.get("business").get("precio");
+                        tipo = "business";
+                        repetir = false;
+                    }
+                    break;
+                case 3:
+                    if(habitacionesLibres.get("superior").get("cantidad") == 0){
+                        System.out.println("No hay habitaciones de este tipo");
+                        System.out.println("Introduzca opcion:");
+                        respuesta = sc.nextInt();
+                    }
+                    else{
+                        precio = habitacionesLibres.get("superior").get("precio");
+                        tipo = "superior";
+                        repetir = false;
+                    }
+                    break;
+                default:
+                    System.out.println("Opción no válida");
+                    System.out.println("Introduzca opcion:");
+                    respuesta = sc.nextInt();
+            }
+        }while(repetir);
          
          
 
