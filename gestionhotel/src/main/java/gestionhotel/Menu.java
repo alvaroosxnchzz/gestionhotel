@@ -155,6 +155,48 @@ public class Menu {
                     respuesta = sc.nextInt();
             }
         }while(repetir);
+        System.out.println("Introduzca el DNI");
+        String dni = sc.nextLine();
+        System.out.println("Introduzca el Nombre");
+        String nom = sc.nextLine();
+        System.out.println("Introduzca el Apellido 1");
+        String ap1 = sc.nextLine();
+        System.out.println("Introduzca el Apellido 2");
+        String ap2 = sc.nextLine();
+
+        
+        // Número de días que se aloja * Número de personas * Precio de la habitación
+        int importe = numeroPersonas * precio * DAYS.between(fechaEntrada,fechaSalida);
+        System.out.println("Coste del alojamiento: " + importe);
+        System.out.println("¿Desea confirmar la reserva? (Y/N):");
+        String respuestaReserva = sc.nextLine();
+
+        
+        if(respuestaReserva.equalsIgnoreCase("Y")){
+            // 1. Comprobar que el cliente existe o no.
+                // 1.1. Si no existe pedir la edad.
+                // 1.2. Si es mayor de 18, resgistrarlo.
+            ClienteDAOImpl cdao = new ClienteDAOImpl();
+
+            // Si devuelve null, no existe.
+            var c = cdao.obtenerPorDNI(dni);
+            if(c == null){
+                System.out.println("Introduzca la edad");
+                int edad = sc.nextInt();
+
+                do {
+                    if (edad < 18) {
+                        System.out.println("No puede ser menor de edad");
+                        System.out.println("Introduzca la edad");
+                        edad = sc.nextInt();
+                    }
+                } while (edad < 18);
+                
+                
+                c = new Cliente(nom, ap1, ap2, edad, dni);
+                cdao.guardar(c);
+                hotel.addCliente(c);
+            }
          
          
 
