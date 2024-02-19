@@ -21,26 +21,26 @@ public class ReservaDAOImpl implements ReservaDAO {
 		conexion = session.openSession();
 	}
 
-	@Override
+	
 	public Reserva obtenerPorCodigo(String codigoReserva) {
 		return conexion.get(Reserva.class, codigoReserva);
 	}
 
-	@Override
+	
 	public void guardar(Reserva r) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.save(r);
 		tx.commit();
 	}
 
-	@Override
+	
 	public void eliminar(Reserva r) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.delete(r);
 		tx.commit();
 	}
 
-	@Override
+	
 	public List<Reserva> obtenerTodo() {
 		return conexion.createQuery("SELECT r FROM Reserva r").getResultList();
 	}
