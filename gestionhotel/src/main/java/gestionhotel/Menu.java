@@ -197,6 +197,13 @@ public class Menu {
                 cdao.guardar(c);
                 hotel.addCliente(c);
             }
+            
+            String codReserva = cu02(numeroPersonas, tipo, c, importe, fechaEntrada, fechaSalida);
+            System.out.println("Reserva realizada con exito");
+
+            
+            System.out.println("El codigo de reserva es: " + codReserva);
+    
          
          
 
