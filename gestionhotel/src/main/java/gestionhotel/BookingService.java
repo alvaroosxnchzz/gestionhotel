@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import gestionhotel2.Reserva;
+import gestionhotel2.ReservaDAOImpl;
 
 public class BookingService {
 	
@@ -61,7 +62,12 @@ public class BookingService {
 
         return infoHabitaciones;
     }
-
+	
+	
+	public static void realizarReserva(Reserva r) {
+        ReservaDAOImpl rdao = new ReservaDAOImpl();
+        rdao.guardar(r);
+    }
 	
 		
 	
