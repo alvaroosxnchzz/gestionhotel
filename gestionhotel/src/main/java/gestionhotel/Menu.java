@@ -282,6 +282,31 @@ public class Menu {
             }
         }
         
+        public void cu04(){
+            System.out.println("Introduzca el código de reserva:");
+            String codReserva = sc.nextLine();
+
+            ReservaDAOImpl rdao = new ReservaDAOImpl();
+            // Buscamos la reserva en la BBDD.
+            var r = rdao.obtenerPorCodigo(codReserva);
+
+            // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
+            if(r == null){
+                System.out.println("La reserva no existe");
+
+                // Para finalizar la función
+                return;
+            }
+
+            for(Habitacion hab : hotel.getConjuntoHabitaciones()){
+                if(hab.getNumHabitacion() == r.getNumHabitacion()){
+                    hab.setEstado("libre");
+                }
+            }
+
+            System.out.println("Importe de la estancia: " + r.getImporte());
+        }
+        
     
     private String generarCodigoAleatorio(int longitud){
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
