@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import gestionhotel2.Habitacion;
+import gestionhotel2.ReservaDAOImpl;
+
 
 
 public class Menu {
@@ -231,6 +234,53 @@ public class Menu {
     // Guardar la reserva en el PC
     hotel.addReserva(r);
 }
+        
+        public void cu03(){
+            System.out.println("Introduzca el código de reserva:");
+            String codReserva = sc.nextLine();
+
+            ReservaDAOImpl rdao = new ReservaDAOImpl();
+            // Buscamos la reserva en la BBDD.
+            var r = rdao.obtenerPorCodigo(codReserva);
+
+            // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
+            if(r == null){
+                System.out.println("La reserva no existe");
+
+                // Para finalizar la función
+                return;
+            }
+            // Comprueba que el día de entrada es hoy
+            if(r.getFechaEntrada() != LocalDate.now()){
+                System.out.println("La fecha de entrada no es hoy");
+
+                // Para finalizar la función
+                return;
+            }
+
+            // Comprobar las habitaciones que cumplan:
+            //      1. Mismo tipo que esté especificado en la reserva.
+            //      2. Que la cantidad de personas en la habitación sea al 
+            //          menos el número de personas de la reserva.
+            //      3. Que la habitación esté disponible.
+            // Devolver la primera que cumpla estas condiciones.
+            for(Habitacion hab : hotel.getConjuntoHabitaciones()){
+                if(hab.getCategoria() == r.getTipoHabitacion() 
+                    && hab.getNumeroCamas() >= r.getNumPersonas()
+                    && hab.getEstado() == "disponible")
+                {
+                    r.setNumHabitacion(hab.getNumHabitacion());
+                    break;
+                }
+            }
+
+            if(r.getNumHabitacion() == -1){
+                System.out.println("No hay habitaciones disponibles");
+            }else{
+                System.out.println("Estancia confirmada. Número de habitación: " + r.getNumHabitacion());
+                // Actualizar la reserva en la BBDD y en el programa.
+            }
+        }
         
     
     private String generarCodigoAleatorio(int longitud){
