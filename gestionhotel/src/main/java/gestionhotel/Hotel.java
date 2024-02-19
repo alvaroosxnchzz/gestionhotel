@@ -1,13 +1,14 @@
 package gestionhotel;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class Hotel{
 
-    private ArrayList<Habitacion> conjuntoHabitaciones;
-    private ArrayList<Cliente> conjuntoClientes;
-    private ArrayList<Reserva> conjuntoReservas;
+    private List<Habitacion> conjuntoHabitaciones;
+    private List<Cliente> conjuntoClientes;
+    private List<Reserva> conjuntoReservas;
 
     
     
@@ -26,7 +27,7 @@ public class Hotel{
     }
 
     public void addHabitacion(Habitacion h) {
-        conjuntoHabtaciones.add(h);
+    	conjuntoHabitaciones.add(h);
     }
 
     
@@ -42,16 +43,16 @@ public class Hotel{
         return conjuntoHabitaciones;
     }
 
-    public List<Habitacion> getConjuntoReservas(){
+    public List<Reserva> getConjuntoReservas(){
         return conjuntoReservas;
     }
 
-    public List<Habitacion> getConjuntoClientes(){
+    public List<Cliente> getConjuntoClientes(){
         return conjuntoClientes;
-    }		this.totalReservas = totalReservas;
-	}
+    }
 	
 	public HashMap<String, Integer> contarHabitaciones(int numPersonas){
+		//HashMap<String, Integer> habitacion
         return hdao.cantidadTiposHabitacion(numPersonas);
     }
 	
