@@ -206,4 +206,16 @@ public class Menu {
     	
     }
     
+    private String generarCodigoAleatorio(int longitud){
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                     + "abcdefghijklmnopqrstuvwxyz"
+                     + "0123456789";
+        String str = new Random().ints(longitud, 0, chars.length())
+                                 .mapToObj(i -> "" + chars.charAt(i))
+                                 .collect(Collectors.joining());
+
+        return str;
+    }
+
+    
    }
