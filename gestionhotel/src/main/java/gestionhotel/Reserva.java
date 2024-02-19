@@ -6,7 +6,7 @@ public class Reserva {
 	
 	private String codigoReserva;
 	
-	private String cliente;
+	private Cliente cliente;
 	
 	private double importe;
 	
@@ -21,16 +21,18 @@ public class Reserva {
 
 	
 
-	    public Reserva(String codigoReserva, int numHabitacion, int numPersonas, String tipoHabitacion,double importe, LocalDate fechaEntrada, LocalDate fechaSalida)
-	{
-	    	this.numHabitacion = numHabitacion;
-	    	this.numPersonas = numPersonas;
-	    	this.codigoReserva = codigoReserva;
-	    	this.tipoHabitacion = tipoHabitacion;
-	    	this.importe = importe;
-	    	this.fechaEntrada = fechaEntrada;
-	    	this.fechaSalida = fechaSalida;
-	}
+    public Reserva(String codigoReserva, int numHabitacion, int numPersonas, String tipoHabitacion, 
+            Cliente cliente, double importe, LocalDate fechaEntrada, LocalDate fechaSalida)
+{
+this.codigoReserva = codigoReserva;
+this.numHabitacion = numHabitacion;
+this.numPersonas = numPersonas;
+this.tipoHabitacion = tipoHabitacion;
+this.cliente = cliente;
+this.importe = importe;
+this.fechaEntrada = fechaEntrada;
+this.fechaSalida = fechaSalida;
+}
 
 	public Reserva() {
 		super();
@@ -45,11 +47,11 @@ public class Reserva {
         this.codigoReserva = codigoReserva;
     }
 
-	public String getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(String cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
