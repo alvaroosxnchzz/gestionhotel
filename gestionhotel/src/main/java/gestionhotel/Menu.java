@@ -83,6 +83,34 @@ public class Menu {
                 numeroPersonas = sc.nextInt();
             }
         }while(numeroPersonas>3);
+        
+        var habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
+
+        
+        System.out.println("Resultado de la consulta");
+        System.out.println("---------------------------");
+
+        
+        for(String clave : habitacionesLibres.keySet()){
+            if(habitacionesLibres.get(clave).get("cantidad")>0){
+            System.out.println(habitacionesLibres.get(clave).get("cantidad") + " habitaciones " +
+                                clave + "(" + habitacionesLibres.get(clave).get("precio") +
+                                " euros).");
+        }
+        }
+    
+        System.out.println("--------------------------------------");
+
+        
+        System.out.println("Opciones de reserva");
+        System.out.println("1) Reservar habitación NORMAL");
+        System.out.println("2) Reservar habitación BUSINESS");
+        System.out.println("3) Reservar habitación SUPERIOR");
+        System.out.println("--------------------------------------");
+        System.out.println("Introduzca una opción");
+        int respuesta = sc.nextInt();
+        boolean repetir = true;
+        int precio = 0;
          
          
 
