@@ -23,26 +23,26 @@ public class ClienteDAOImpl implements ClienteDAO {
 		conexion = session.openSession();
 	}
 
-	@Override
+	
 	public Cliente obtenerPorDNI(String DNI) {
 		return conexion.get(Cliente.class, DNI);
 	}
 
-	@Override
+	
 	public void guardar(Cliente c) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.save(c);
 		tx.commit();
 	}
 
-	@Override
+	
 	public void eliminar(Cliente c) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.delete(c);
 		tx.commit();
 	}
 
-	@Override
+	
 	public List<Cliente> obtenerTodo() {
 		return conexion.createQuery("SELECT c FROM Cliente c").getResultList();
 	}
