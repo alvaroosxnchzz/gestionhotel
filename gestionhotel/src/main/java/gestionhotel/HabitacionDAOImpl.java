@@ -25,19 +25,19 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 		conexion = session.openSession();
 	}
 
-	@Override
+	
 	public Habitacion obtenerId(int id) {
 		return conexion.get(Habitacion.class, id);
 	}
 
-	@Override
+	
 	public void guardar(Habitacion h) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.save(h);
 		tx.commit();
 	}
 
-	@Override
+	
 	public void eliminar(Habitacion h) {
 		Transaction tx = conexion.beginTransaction();
 		conexion.delete(h);
@@ -45,12 +45,12 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 		
 	}
 
-	@Override
+	
 	public List<Habitacion> obtenerTodo() {
 		return conexion.createQuery("SELECT h FROM Habitacion h").getResultList();
 	}
 	
-	 @Override
+	 
 	    public HashMap<String, Integer> cantidadTiposHabitacion(){
 	        // Para almacenar la cantidad de habitaciones que hay de cada tipo
 	        HashMap<String, Integer> cantidadHabitaciones = new HashMap<>();
