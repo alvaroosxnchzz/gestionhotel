@@ -209,9 +209,29 @@ public class Menu {
 
     }
     
-    public static void cu02() {
-    	
-    }
+        public String cu02(int numPersonas, String tipoHab, Cliente cliente, 
+                int importe, LocalDate fechaEntrada, LocalDate fechaSalida){
+    
+    // Genera un número de reserva que no exista en la BBDD.
+    ReservaDAOImpl rdao = new ReservaDAOImpl();
+    String numReserva;
+    do{
+        numReserva = generarCodigoAleatorio(8) + "-" + 
+                    generarCodigoAleatorio(4) + "-" + 
+                    generarCodigoAleatorio(4) + "-" + 
+                    generarCodigoAleatorio(4) + "-" +
+                    generarCodigoAleatorio(12); 
+    }while(rdao.obtenerPorCodigo(numReserva) != null);
+
+    // Genera la reserva
+    Reserva r = new Reserva(numReserva, -1, numPersonas, tipoHab, cliente, 
+                            importe, fechaEntrada, fechaSalida);
+    // Guardar la reserva en la BBDD
+    bs.realizarReserva(r);
+    // Guardar la reserva en el PC
+    hotel.addReserva(r);
+}
+        
     
     private String generarCodigoAleatorio(int longitud){
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
