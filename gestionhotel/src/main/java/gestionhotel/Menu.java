@@ -4,9 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import gestionhotel2.Habitacion;
-import gestionhotel2.ReservaDAOImpl;
+import java.time.temporal.ChronoUnit;
 
 
 
