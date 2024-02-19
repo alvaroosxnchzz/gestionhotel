@@ -5,8 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import gestionhotel2.BookingService;
-import gestionhotel2.Hotel;
+
 
 public class Menu {
 
@@ -65,25 +64,25 @@ public class Menu {
         }while(opcion != 5);
     }
 
-    public static void cu01(){
-    	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public void cu01(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-         System.out.println("### Consultar disponibilidad y reserva de habitaciones ###");
-         
+        System.out.println("### Consultar disponibilidad y reserva de habitaciones ###");
+        
 
-         System.out.println("Introduce una fecha de entrada (formato dd/MM/yyyy)");
-         LocalDate fechaEntrada = LocalDate.parse(sc.nextLine(), formatter);
-         System.out.println("Introduce una fecha de salida (formato dd/MM/yyyy)");
-         LocalDate fechaSalida = LocalDate.parse(sc.nextLine(), formatter);
-         System.out.println("Introduce el numero de personas (max. 3)");
-         int numeroPersonas = sc.nextInt();
-         do{
-             if(numeroPersonas>3) {
-                 System.out.println("El  numero máximo de personas son 3");
-                 System.out.println("Introduce el numero de personas (max. 3)");
-                 numeroPersonas = sc.nextInt();
-             }
-         }while(numeroPersonas>3);
+        System.out.println("Introduce una fecha de entrada (formato dd/MM/yyyy)");
+        LocalDate fechaEntrada = LocalDate.parse(sc.nextLine(), formatter);
+        System.out.println("Introduce una fecha de salida (formato dd/MM/yyyy)");
+        LocalDate fechaSalida = LocalDate.parse(sc.nextLine(), formatter);
+        System.out.println("Introduce el numero de personas (max. 3)");
+        int numeroPersonas = sc.nextInt();
+        do{
+            if(numeroPersonas>3) {
+                System.out.println("El  numero máximo de personas son 3");
+                System.out.println("Introduce el numero de personas (max. 3)");
+                numeroPersonas = sc.nextInt();
+            }
+        }while(numeroPersonas>3);
          
          
 
