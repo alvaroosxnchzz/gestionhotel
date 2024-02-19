@@ -1,6 +1,12 @@
 package gestionhotel;
+
+@Entity
+@Table(name = "Habitacion")
 public class Habitacion {
 	
+	
+	@Id
+    private int id;
 	public int numHabitacion;
 	public int numeroCamas;
 	public String categoria;
