@@ -67,70 +67,12 @@ public class Menu {
 	    }
 
     public static void cu01(){
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Introduce una fecha de entrada");
-        LocalDate fechaEntrada = LocalDate.parse(sc.nextLine());
-        System.out.println("Introduce una fecha de salida");
-        LocalDate fechaSalida = LocalDate.parse(sc.nextLine());
-        System.out.println("Introduce el numero de personas");
-        int numeroPersonas = sc.nextInt();
         
-        //DEBE DEVOLVER LAS HABITACIONES DISPONIBLES DE CADA TIPO Y AHI ELIGO UNA DE ESAS
-        //CUANDO ELJO UN TIPO DE HABITACION SE RESTA UNA DE ESE TIPO SI ESTA DENTRO DE LA FECHA
-        //LA CLASE REEERVA DEBE INDICAR EL NUM DE CAMAS Y LA CATEOGIRA
-        //DESPUES INTRODUZCO LOS DATOS DEL CLIENT Y CONFRMO LA RESERVA Y ME DEVUELVE EL CODIGO DE LA RESERVA
-        //EL NUMERO DE HABITACION TE LO DA DESPUES EN EL CHECKIN, QUE INTRODUCES EL NUMERO DE RESERVA.
-        BookingService bs = new BookingService(hotel);
-        ArrayList<Boolean> habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
-        
-        for (Habitacion h : hotel.getConjuntoHabitaciones()) {
-            if (habitacionesLibres.get(h.getNumHabitacion() - 1)) {
-                System.out.println(h.getNumHabitacion());
-                System.out.println(h.getPrecio());
-            }
-        }
-        
-        System.out.println("¿Deseas reservar la habitación? S/N");
-        String respuesta = sc.nextLine();
-
-        if (respuesta.equalsIgnoreCase("S")) {
-            System.out.println("¿Qué habitación desea reservar?");
-            int numeroHabitacion = sc.nextInt();
-            sc.nextLine();
-
-            if (habitacionesLibres.get(numeroHabitacion - 1)) {
-                cu02(habitacionesLibres, fechaEntrada, fechaSalida, numeroHabitacion);
-            } else {
-                System.out.println("Esta habitación no está disponible");
-            }
-        }
 
     }
     
-    public static void cu02(ArrayList<Boolean> habitacionesLibres, LocalDate fechaEntrada, LocalDate fechaSalida, int numeroHabitacion){
-    	Scanner sc = new Scanner(System.in);
-
-        System.out.println("Introduce el DNI");
-        String dni = sc.nextLine();
-        
-        boolean clienteNoExiste = !Clientes.comprobarCliente(dni);
-
-
-
-        if(clienteNoExiste){
-            Clientes.registrarNuevoCliente(dni);
-        }
-        
-        System.out.println("El coste del alojamiento es:" + "150€");
-        System.out.println("¿Deseas reservar la habitación? S/N");
-        String respuesta = sc.nextLine();
-        if(respuesta.equalsIgnoreCase("S")){
-            Reserva r = new Reserva(-1,dni, 150, numeroHabitacion, fechaEntrada, fechaSalida);
-            Hotel.addReserva(r);
-            System.out.println(r.getCodigoReserva());
-        }
-
+    public static void cu02() {
+    	
     }
     
    }
