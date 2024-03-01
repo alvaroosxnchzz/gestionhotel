@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
 public class Hotel{
 	
 	BookingService bs = new BookingService();
@@ -47,8 +46,20 @@ public class Hotel{
     }
 	
 	public HashMap<String, Integer> contarHabitaciones(int numPersonas){
-		//HashMap<String, Integer> habitacion
-        return hdao.cantidadTiposHabitacion(numPersonas);
+		
+		HashMap<String, Integer> tiposHabitaciones = new HashMap<>();
+		
+		tiposHabitaciones.put("normal", 0);
+        tiposHabitaciones.put("business", 0);
+        tiposHabitaciones.put("superior", 0);
+        
+        for(Habitacion hab : conjuntoHabitaciones) {
+        
+        	int n = tiposHabitaciones.get(hab.getCategoria());
+        	tiposHabitaciones.replace(hab.getCategoria(), n+1);
+        }
+        
+        return tiposHabitaciones; 
     }
 	
 	
