@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 
 
+
 public class Hotel{
+	
+	BookingService bs = new BookingService();
 
     private List<Habitacion> conjuntoHabitaciones;
     private List<Cliente> conjuntoClientes;
@@ -13,10 +16,7 @@ public class Hotel{
     
 
     public Hotel() {
-        // Cargada la info del hotel
-        conjuntoHabitaciones = hdao.obtenerTodo();
-        conjuntoClientes = cdao.obtenerTodo();
-        conjuntoReservas = rdao.obtenerTodo();
+        
 
     }
 
