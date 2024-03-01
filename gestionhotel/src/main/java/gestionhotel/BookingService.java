@@ -11,9 +11,11 @@ public class BookingService {
 	
 	Hotel h;
 	
-	public BookingService(Hotel h) {
-		this.h = h;
-	}
+	private HabitacionDAOImpl hdao = new HabitacionDAOImpl();
+    private ClienteDAOImpl cdao = new ClienteDAOImpl();
+    private ReservaDAOImpl rdao = new ReservaDAOImpl();
+	
+	
 
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(LocalDate fechaEntrada,
             LocalDate fechaSalida, int numPersonas) {

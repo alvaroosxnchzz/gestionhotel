@@ -11,12 +11,6 @@ public class Hotel{
     private List<Reserva> conjuntoReservas;
 
     
-    
-
-
-    private HabitacionDAOImpl hdao = new HabitacionDAOImpl();
-    private ClienteDAOImpl cdao = new ClienteDAOImpl();
-    private ReservaDAOImpl rdao = new ReservaDAOImpl();
 
     public Hotel() {
         // Cargada la info del hotel
