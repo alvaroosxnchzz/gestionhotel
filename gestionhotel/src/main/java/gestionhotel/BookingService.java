@@ -3,9 +3,8 @@ package gestionhotel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import gestionhotel2.Reserva;
-import gestionhotel2.ReservaDAOImpl;
 
 public class BookingService {
 	
@@ -15,7 +14,21 @@ public class BookingService {
     private ClienteDAOImpl cdao = new ClienteDAOImpl();
     private ReservaDAOImpl rdao = new ReservaDAOImpl();
 	
+	public BookingService() {
+		
+	}
 	
+	public List<Habitacion> obtenerHabitaciones(){
+    	return hdao.obtenerTodo();
+    }
+    
+    public List<Reserva> obtenerReservas(){
+    	return rdao.obtenerTodo();
+    }
+    
+    public List<Cliente> obtenerClientes(){
+    	return cdao.obtenerTodo();
+    }
 
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(LocalDate fechaEntrada,
             LocalDate fechaSalida, int numPersonas) {
