@@ -50,16 +50,4 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 		return conexion.createQuery("SELECT h FROM Habitacion h").getResultList();
 	}
 	
-	 
-	    public HashMap<String, Integer> cantidadTiposHabitacion(){
-	        // Para almacenar la cantidad de habitaciones que hay de cada tipo
-	        HashMap<String, Integer> cantidadHabitaciones = new HashMap<>();
-	        ArrayList<String> resultado = conexion.createQuery("SELECT categoria, COUNT(*) FROM Habitacion WHERE numPersonas>="+ numeroPersonas+ " GROUP BY categoria").getResultList();
-	        // Paso al HashMap de la cantidad de estaciones de cada tipo recibida desde la base de datos.
-	        for(var fila: resultado){
-	           cantidadHabitaciones.put(fila[0], fila[1]);
-	        }
-
-	        return cantidadHabitaciones;
-	    }
 }
