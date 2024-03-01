@@ -16,8 +16,9 @@ public class Hotel{
     
 
     public Hotel() {
-        
-
+    	conjuntoHabitaciones = bs.obtenerHabitaciones();
+        conjuntoClientes = bs.obtenerClientes();
+        conjuntoReservas = bs.obtenerReservas();
     }
 
     public void addHabitacion(Habitacion h) {
