@@ -23,15 +23,18 @@ public class Hotel{
 
     public void addHabitacion(Habitacion h) {
     	conjuntoHabitaciones.add(h);
+    	bs.annadirHabitacion(h);
     }
 
     
     public void addReserva(Reserva r){
         conjuntoReservas.add(r);
+        bs.realizarReserva(r);
     }
 
     public void addCliente(Cliente c){
         conjuntoClientes.add(c);
+        bs.registrarCliente(c);
     }
 
     public List<Habitacion> getConjuntoHabitaciones(){
