@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import gestionhotel2.Reserva;
+
 
 
 public class Hotel{
@@ -35,6 +37,24 @@ public class Hotel{
     
     public Reserva obtenerReserva(String codReserva) {
     	return bs.buscarReserva(codReserva);
+    }
+    
+    public void eliminarReserva(String codReserva) {
+    	Reserva reserv = null;
+    	
+    	for(Reserva r : conjuntoReservas) {
+    		// Si encontramos el objeto que representa a la reserva con ese código
+    		if(r.getCodigoReserva().equals(codReserva)) {
+    			reserv = r;
+    		}
+    	}
+    	
+    	// Con el objeto reserv, que es la reserva con el codigo deseado:
+    	// Primero se elimina de la BBDD y después del conjunto de datos del pc
+    	if(reserv != null) {
+    		bs.borrarReserva(reserv);
+    		conjuntoReservas.remove(reserv);	
+    	}
     }
 
     public void addCliente(Cliente c){
