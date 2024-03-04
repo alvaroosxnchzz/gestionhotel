@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import gestionhotel2.Cliente;
 
 
 public class BookingService {
@@ -33,7 +32,7 @@ public class BookingService {
     }
 
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(LocalDate fechaEntrada,
-            LocalDate fechaSalida, int numPersonas) {
+            LocalDate fechaSalida, int numPersonas, List<Reserva> conjuntoReservas) {
 
         HashMap<String, HashMap<String, Integer>> infoHabitaciones = new HashMap<>();
         infoHabitaciones.put("normal", new HashMap<>());
@@ -65,21 +64,20 @@ public class BookingService {
         //    2. Que la nueva fecha de salida no sea anterior a la fecha de entrada de la reserva.
         // Si se cumplen (1) y (2), entonces el nuevo intervalo se solapa de alguna forma con el intervalo
         // de la reserva y la habitación asociada no puede ser tomada en cuenta.
-        for (Reserva r : h.getTotalReservas()) {
+        for (Reserva r : conjuntoReservas) {
             if (!fechaEntrada.isAfter(r.getFechaSalida()) && !fechaSalida.isBefore(r.getFechaEntrada())
-                    && r.numeroPersonas <= numPersonas) {
+                    && r.getNumPersonas() <= numPersonas) {
                 // Tomamos el número de habitaciones que hay disponibles hasta el momento y le restamos uno.
-                int n = infoHabitaciones.get(r.setTipoHabitacion()).get("cantidad") - 1;
+                int n = infoHabitaciones.get(r.getTipoHabitacion()).get("cantidad") - 1;
 
                 // Actualizamos la cantidad de habitaciones disponibles.
-                infoHabitaciones.get(r.setTipoHabitacion()).replace("cantidad", n);
+                infoHabitaciones.get(r.getTipoHabitacion()).replace("cantidad", n);
             }
 
         }
 
         return infoHabitaciones;
     }
-	
 	
 	public void realizarReserva(Reserva r) {
         rdao.guardar(r);
@@ -88,6 +86,10 @@ public class BookingService {
 	public void registrarCliente(Cliente c) {
         
         cdao.guardar(c);
+    }
+	
+	public void annadirHabitacion(Habitacion h) {
+        hdao.guardar(h);
     }
 	
 		
