@@ -177,10 +177,7 @@ public class Menu {
             // 1. Comprobar que el cliente existe o no.
                 // 1.1. Si no existe pedir la edad.
                 // 1.2. Si es mayor de 18, resgistrarlo.
-            ClienteDAOImpl cdao = new ClienteDAOImpl();
-
-            // Si devuelve null, no existe.
-            var c = cdao.obtenerPorDNI(dni);
+        	Cliente c = hotel.obtenerCliente(dni);
             if(c == null){
                 System.out.println("Introduzca la edad");
                 int edad = sc.nextInt();
