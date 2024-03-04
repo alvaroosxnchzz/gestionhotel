@@ -84,7 +84,7 @@ public class Menu {
             }
         }while(numeroPersonas>3);
         
-        var habitacionesLibres =  bs.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
+        var habitacionesLibres =  hotel.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
 
         
         System.out.println("Resultado de la consulta");
