@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import gestionhotel2.Reserva;
 
 
 
@@ -97,6 +96,7 @@ public class Hotel{
 	
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(
     		LocalDate fechaEntrada, LocalDate fechaSalida, int numPersonas){
+		return bs.consultarDisponibilidad(fechaEntrada, fechaSalida, numPersonas, this.conjuntoReservas);
     	
     }
 	
