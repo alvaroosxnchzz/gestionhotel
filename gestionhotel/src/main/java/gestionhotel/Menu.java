@@ -13,13 +13,12 @@ public class Menu {
     
 
     private Hotel hotel;
-    private BookingService bs;
     private Scanner sc = new Scanner(System.in);
 
 
     public void cargarHotel(){
         hotel=new Hotel();
-        bs = new BookingService(hotel);
+        
     }
 
     public void deslpegarMenu(){
