@@ -228,10 +228,9 @@ public class Menu {
     // Genera la reserva
     Reserva r = new Reserva(numReserva, -1, numPersonas, tipoHab, cliente, 
                             importe, fechaEntrada, fechaSalida);
-    // Guardar la reserva en la BBDD
-    bs.realizarReserva(r);
-    // Guardar la reserva en el PC
     hotel.addReserva(r);
+    
+    return codReserva;
 }
         
         public void cu03(){
