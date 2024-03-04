@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import gestionhotel2.Reserva;
+
 
 
 public class BookingService {
@@ -81,6 +83,10 @@ public class BookingService {
 	
 	public void realizarReserva(Reserva r) {
         rdao.guardar(r);
+    }
+	
+	public Reserva buscarReserva(String codReserva) {
+    	return rdao.obtenerPorCodigo(codReserva);
     }
 	
 	public void registrarCliente(Cliente c) {

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
+
 public class Hotel{
 	
 	BookingService bs = new BookingService();
@@ -30,6 +31,10 @@ public class Hotel{
     public void addReserva(Reserva r){
         conjuntoReservas.add(r);
         bs.realizarReserva(r);
+    }
+    
+    public Reserva obtenerReserva(String codReserva) {
+    	return bs.buscarReserva(codReserva);
     }
 
     public void addCliente(Cliente c){
