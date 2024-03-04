@@ -36,6 +36,10 @@ public class Hotel{
         conjuntoClientes.add(c);
         bs.registrarCliente(c);
     }
+    
+    public Cliente obtenerCliente(String dni) {
+    	return bs.buscarCliente(dni);
+    }
 
     public List<Habitacion> getConjuntoHabitaciones(){
         return conjuntoHabitaciones;
