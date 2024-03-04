@@ -192,7 +192,7 @@ public class Menu {
                 
                 
                 c = new Cliente(nom, ap1, ap2, edad, dni);
-                cdao.guardar(c);
+                
                 hotel.addCliente(c);
             }
             
