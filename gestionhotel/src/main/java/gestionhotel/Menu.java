@@ -205,28 +205,28 @@ public class Menu {
 
             
             System.out.println("El codigo de reserva es: " + codReserva);
-    
+        }
          
          
 
     }
     
-        public String cu02(int numPersonas, String tipoHab, Cliente cliente, 
+     public String cu02(int numPersonas, String tipoHab, Cliente cliente, 
                 int importe, LocalDate fechaEntrada, LocalDate fechaSalida){
     
     // Genera un número de reserva que no exista en la BBDD.
     
-    String numReserva;
+    String codReserva;
     do{
-        numReserva = generarCodigoAleatorio(8) + "-" + 
+        codReserva = generarCodigoAleatorio(8) + "-" + 
                     generarCodigoAleatorio(4) + "-" + 
                     generarCodigoAleatorio(4) + "-" + 
                     generarCodigoAleatorio(4) + "-" +
                     generarCodigoAleatorio(12); 
-    }while(hotel.obtenerReserva(numReserva) != null);
+    }while(hotel.obtenerReserva(codReserva) != null);
 
     // Genera la reserva
-    Reserva r = new Reserva(numReserva, -1, numPersonas, tipoHab, cliente, 
+    Reserva r = new Reserva(codReserva, -1, numPersonas, tipoHab, cliente, 
                             importe, fechaEntrada, fechaSalida);
     hotel.addReserva(r);
     
