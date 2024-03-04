@@ -211,7 +211,7 @@ public class Menu {
                 int importe, LocalDate fechaEntrada, LocalDate fechaSalida){
     
     // Genera un número de reserva que no exista en la BBDD.
-    ReservaDAOImpl rdao = new ReservaDAOImpl();
+    
     String numReserva;
     do{
         numReserva = generarCodigoAleatorio(8) + "-" + 
@@ -219,7 +219,7 @@ public class Menu {
                     generarCodigoAleatorio(4) + "-" + 
                     generarCodigoAleatorio(4) + "-" +
                     generarCodigoAleatorio(12); 
-    }while(rdao.obtenerPorCodigo(numReserva) != null);
+    }while(hotel.obtenerReserva(numReserva) != null);
 
     // Genera la reserva
     Reserva r = new Reserva(numReserva, -1, numPersonas, tipoHab, cliente, 
