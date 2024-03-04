@@ -322,7 +322,7 @@ public class Menu {
             }
 
             // Eliminada la reserva de la BBDD.
-            rdao.eliminar(r);
+            hotel.eliminarReserva(codReserva);
 
             // Eliminar la reserva del PC.
 
