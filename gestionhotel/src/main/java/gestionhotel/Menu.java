@@ -1,5 +1,6 @@
 package gestionhotel;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -166,7 +167,7 @@ public class Menu {
 
         
         // Número de días que se aloja * Número de personas * Precio de la habitación
-        int importe = numeroPersonas * precio * DAYS.between(fechaEntrada,fechaSalida);
+        int importe = numeroPersonas * precio * (int)Duration.between(fechaEntrada,fechaSalida).toDays();
         System.out.println("Coste del alojamiento: " + importe);
         System.out.println("¿Desea confirmar la reserva? (Y/N):");
         String respuestaReserva = sc.nextLine();
