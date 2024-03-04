@@ -1,4 +1,5 @@
 package gestionhotel;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +63,10 @@ public class Hotel{
         return tiposHabitaciones; 
     }
 	
+	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(
+    		LocalDate fechaEntrada, LocalDate fechaSalida, int numPersonas){
+    	
+    }
 	
 	
 	
