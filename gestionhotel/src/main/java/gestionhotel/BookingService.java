@@ -92,8 +92,9 @@ public class BookingService {
         hdao.guardar(h);
     }
 	
-		
-	
+	public Cliente buscarCliente(String dni) {
+    	return cdao.obtenerPorDNI(dni);
+    }
 		
 	
 	
