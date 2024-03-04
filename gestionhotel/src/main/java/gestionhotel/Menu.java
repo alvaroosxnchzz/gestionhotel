@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
+
 import java.time.temporal.ChronoUnit;
 
 
@@ -234,9 +237,9 @@ public class Menu {
             System.out.println("Introduzca el código de reserva:");
             String codReserva = sc.nextLine();
 
-            ReservaDAOImpl rdao = new ReservaDAOImpl();
+            
             // Buscamos la reserva en la BBDD.
-            var r = rdao.obtenerPorCodigo(codReserva);
+            Reserva r = hotel.obtenerReserva(codReserva);
 
             // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
             if(r == null){
