@@ -3,10 +3,10 @@ package gestionhotel;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
-import gestionhotel2.Reserva;
 
 import java.time.temporal.ChronoUnit;
 
@@ -115,6 +115,7 @@ public class Menu {
         int respuesta = sc.nextInt();
         boolean repetir = true;
         int precio = 0;
+        String tipo = "";
         do{
             switch(respuesta){
                 case 1: 
