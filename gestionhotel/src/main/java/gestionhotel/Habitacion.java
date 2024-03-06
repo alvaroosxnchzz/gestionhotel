@@ -1,5 +1,7 @@
 package gestionhotel;
 
+import javax.persistence.*;
+
 @Entity
 @Table(name = "Habitacion")
 public class Habitacion {

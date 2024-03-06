@@ -2,10 +2,16 @@ package gestionhotel;
 
 import java.util.Scanner;
 
+import javax.persistence.*;
+
 
 @Entity
 @Table(name = "Cliente")
 public class Cliente {
+	
+	@Column(length=50)
+	@Id
+	public String DNI;
 	
 	public String nombre;
 	
@@ -15,8 +21,7 @@ public class Cliente {
 	
 	public int edad = 0;
 	
-	@Id
-	public String DNI;
+	
 	
 	
 
