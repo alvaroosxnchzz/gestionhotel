@@ -12,13 +12,10 @@ public class ReservaDAOImpl implements ReservaDAO {
 	private Session conexion;
 	
 	public ReservaDAOImpl() {
-		SessionFactory session = new Configuration()
-                .addAnnotatedClass(Cliente.class)
-                .addAnnotatedClass(Habitacion.class)
-                .addAnnotatedClass(Reserva.class)
-                .configure().buildSessionFactory();
-		
-		conexion = session.openSession();
+		Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        conexion = factory.openSession();
 	}
 
 	

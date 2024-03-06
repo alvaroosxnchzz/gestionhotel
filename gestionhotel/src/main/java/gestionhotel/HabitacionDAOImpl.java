@@ -7,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import gestionhotel2.ArrayList;
-import gestionhotel2.HashMap;
 
 public class HabitacionDAOImpl implements HabitacionDAO{
 	
@@ -16,13 +14,10 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 	
 	public HabitacionDAOImpl(){
 
-		SessionFactory session = new Configuration()
-                .addAnnotatedClass(Cliente.class)
-                .addAnnotatedClass(Habitacion.class)
-                .addAnnotatedClass(Reserva.class)
-                .configure().buildSessionFactory();
-		
-		conexion = session.openSession();
+		Configuration cfg = new Configuration();
+        cfg.configure("hibernate.cfg.xml");
+        SessionFactory factory = cfg.buildSessionFactory();
+        conexion = factory.openSession();
 	}
 
 	
