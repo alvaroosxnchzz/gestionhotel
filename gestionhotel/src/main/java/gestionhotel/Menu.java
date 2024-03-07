@@ -3,12 +3,11 @@ package gestionhotel;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-
-import java.time.temporal.ChronoUnit;
 
 
 
@@ -88,7 +87,7 @@ public class Menu {
             }
         }while(numeroPersonas>3);
         
-        var habitacionesLibres =  hotel.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
+        HashMap<String, HashMap<String, Integer>>  habitacionesLibres =  hotel.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
 
         
         System.out.println("Resultado de la consulta");

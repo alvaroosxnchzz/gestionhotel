@@ -11,7 +11,4 @@ public interface HabitacionDAO{
 	public void eliminar(Habitacion h);
 	public List<Habitacion> obtenerTodo();
 
-    
-    public HashMap<String, Integer> cantidadTiposHabitacion(int numPersonas);
-
 }

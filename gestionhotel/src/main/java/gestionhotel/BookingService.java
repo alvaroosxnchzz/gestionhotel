@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
-
-
-
 public class BookingService {
 	
-	Hotel h;
+	private Hotel h;
 	
 	private HabitacionDAOImpl hdao = new HabitacionDAOImpl();
     private ClienteDAOImpl cdao = new ClienteDAOImpl();
@@ -36,12 +32,12 @@ public class BookingService {
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(LocalDate fechaEntrada,
             LocalDate fechaSalida, int numPersonas, List<Reserva> conjuntoReservas) {
 
-        HashMap<String, HashMap<String, Integer>> infoHabitaciones = new HashMap<>();
+        HashMap<String, HashMap<String,Integer>> infoHabitaciones = new HashMap<>();
         infoHabitaciones.put("normal", new HashMap<>());
         infoHabitaciones.put("business", new HashMap<>());
         infoHabitaciones.put("superior", new HashMap<>());
 
-        var numHabitaciones = h.contarHabitaciones(numPersonas);
+        HashMap<String, Integer> numHabitaciones = h.contarHabitaciones(numPersonas);
 
         // Info para las habitaciones de tipo normal
         HashMap<String, Integer> info = new HashMap<>();
