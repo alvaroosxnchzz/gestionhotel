@@ -6,7 +6,7 @@ public class PruebaClienteTest {
 	
 	public void getterSettersTest() {
 		
-		Clientes c = new Clientes();
+		Cliente c = new Cliente();
 		c.setNombre("Alvaro");
 		c.setApellido1("Sanchez");
 		c.setApellido2("Ortega");

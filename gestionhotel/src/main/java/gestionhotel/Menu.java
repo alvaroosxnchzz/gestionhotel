@@ -3,25 +3,19 @@ package gestionhotel;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
-
-
-public class Menu {
-
-    
-
+public class Menu {   
     private Hotel hotel;
     private Scanner sc = new Scanner(System.in);
-
-
-    public void cargarHotel(){
-        hotel=new Hotel();
-        
+    
+    public Menu() {
+    	hotel = new Hotel();
     }
 
     public void deslpegarMenu(){
@@ -31,7 +25,6 @@ public class Menu {
         System.out.println("### Menu Hotel ###");
 
         do{
-
             System.out.println("--------------------------");
             System.out.println("1.Consultar disponibilidad y reserva de habitaciones");
             System.out.println("2.Check-in");
@@ -42,9 +35,9 @@ public class Menu {
 
             System.out.println("Introduzca una opción");
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch(opcion){
-
                 case 1:
                     cu01();
                     break;
@@ -54,13 +47,11 @@ public class Menu {
                     break;
 
                 case 3:
-                    cu05();
+                    cu04();
                     break;
-
-                default:
-
-
-
+                   
+                case 4:
+                	cu05();
             }
 
 
@@ -72,7 +63,6 @@ public class Menu {
 
         System.out.println("### Consultar disponibilidad y reserva de habitaciones ###");
         
-
         System.out.println("Introduce una fecha de entrada (formato dd/MM/yyyy)");
         LocalDate fechaEntrada = LocalDate.parse(sc.nextLine(), formatter);
         System.out.println("Introduce una fecha de salida (formato dd/MM/yyyy)");
@@ -88,23 +78,19 @@ public class Menu {
         }while(numeroPersonas>3);
         
         HashMap<String, HashMap<String, Integer>>  habitacionesLibres =  hotel.consultarDisponibilidad(fechaEntrada,fechaSalida,numeroPersonas);
-
-        
+                
         System.out.println("Resultado de la consulta");
         System.out.println("---------------------------");
 
-        
         for(String clave : habitacionesLibres.keySet()){
             if(habitacionesLibres.get(clave).get("cantidad")>0){
-            System.out.println(habitacionesLibres.get(clave).get("cantidad") + " habitaciones " +
-                                clave + "(" + habitacionesLibres.get(clave).get("precio") +
+            	System.out.println(habitacionesLibres.get(clave).get("cantidad") + " habitaciones " +
+                                clave + " (" + habitacionesLibres.get(clave).get("precio") +
                                 " euros).");
-        }
+            }
         }
     
         System.out.println("--------------------------------------");
-
-        
         System.out.println("Opciones de reserva");
         System.out.println("1) Reservar habitación NORMAL");
         System.out.println("2) Reservar habitación BUSINESS");
@@ -112,6 +98,7 @@ public class Menu {
         System.out.println("--------------------------------------");
         System.out.println("Introduzca una opción");
         int respuesta = sc.nextInt();
+        sc.nextLine();
         boolean repetir = true;
         int precio = 0;
         String tipo = "";
@@ -122,6 +109,7 @@ public class Menu {
                         System.out.println("No hay habitaciones de este tipo");
                         System.out.println("Introduzca opcion:");
                         respuesta = sc.nextInt();
+                        sc.nextLine();
                     }
                     else{
                         precio = habitacionesLibres.get("normal").get("precio");
@@ -134,6 +122,7 @@ public class Menu {
                         System.out.println("No hay habitaciones de este tipo");
                         System.out.println("Introduzca opcion:");
                         respuesta = sc.nextInt();
+                        sc.nextLine();
                     }
                     else{
                         precio = habitacionesLibres.get("business").get("precio");
@@ -146,6 +135,7 @@ public class Menu {
                         System.out.println("No hay habitaciones de este tipo");
                         System.out.println("Introduzca opcion:");
                         respuesta = sc.nextInt();
+                        sc.nextLine();
                     }
                     else{
                         precio = habitacionesLibres.get("superior").get("precio");
@@ -157,178 +147,177 @@ public class Menu {
                     System.out.println("Opción no válida");
                     System.out.println("Introduzca opcion:");
                     respuesta = sc.nextInt();
+                    sc.nextLine();
             }
         }while(repetir);
         System.out.println("Introduzca el DNI");
         String dni = sc.nextLine();
-        System.out.println("Introduzca el Nombre");
-        String nom = sc.nextLine();
-        System.out.println("Introduzca el Apellido 1");
-        String ap1 = sc.nextLine();
-        System.out.println("Introduzca el Apellido 2");
-        String ap2 = sc.nextLine();
+        
+        // Comprobaremos si el cliente existe o no ya en la BD
+        Cliente c = hotel.obtenerCliente(dni);
+        
+        // Si el cliente no existe se le piden los datos y se registra
+        // 1.1. Si no existe pedir la edad.
+        // 1.2. Si es mayor de 18, resgistrarlo.
+        if(c == null){
+        	System.out.println("Introduzca el Nombre");
+            String nom = sc.nextLine();
+            System.out.println("Introduzca el Apellido 1");
+            String ap1 = sc.nextLine();
+            System.out.println("Introduzca el Apellido 2");
+            String ap2 = sc.nextLine();
+            System.out.println("Introduzca la edad");
+            int edad = sc.nextInt();
+            sc.nextLine();
 
+            do {
+                if (edad < 18) {
+                    System.out.println("No puede ser menor de edad");
+                    System.out.println("Introduzca la edad");
+                    edad = sc.nextInt();
+                }
+            } while (edad < 18);
+            
+            c = new Cliente(nom, ap1, ap2, edad, dni);
+            
+            hotel.addCliente(c);
+        }
         
         // Número de días que se aloja * Número de personas * Precio de la habitación
-        int importe = numeroPersonas * precio * (int)Duration.between(fechaEntrada,fechaSalida).toDays();
+        int importe = numeroPersonas * precio * ((int)fechaEntrada.until(fechaSalida, ChronoUnit.DAYS)+1);
         System.out.println("Coste del alojamiento: " + importe);
         System.out.println("¿Desea confirmar la reserva? (Y/N):");
         String respuestaReserva = sc.nextLine();
-
         
         if(respuestaReserva.equalsIgnoreCase("Y")){
-            // 1. Comprobar que el cliente existe o no.
-                // 1.1. Si no existe pedir la edad.
-                // 1.2. Si es mayor de 18, resgistrarlo.
-        	Cliente c = hotel.obtenerCliente(dni);
-            if(c == null){
-                System.out.println("Introduzca la edad");
-                int edad = sc.nextInt();
-
-                do {
-                    if (edad < 18) {
-                        System.out.println("No puede ser menor de edad");
-                        System.out.println("Introduzca la edad");
-                        edad = sc.nextInt();
-                    }
-                } while (edad < 18);
-                
-                
-                c = new Cliente(nom, ap1, ap2, edad, dni);
-                
-                hotel.addCliente(c);
-            }
-            
             String codReserva = cu02(numeroPersonas, tipo, c, importe, fechaEntrada, fechaSalida);
             System.out.println("Reserva realizada con exito");
-
             
             System.out.println("El codigo de reserva es: " + codReserva);
         }
-         
-         
-
     }
     
-     public String cu02(int numPersonas, String tipoHab, Cliente cliente, 
+    public String cu02(int numPersonas, String tipoHab, Cliente cliente, 
                 int importe, LocalDate fechaEntrada, LocalDate fechaSalida){
     
-    // Genera un número de reserva que no exista en la BBDD.
-    
-    String codReserva;
-    do{
-        codReserva = generarCodigoAleatorio(8) + "-" + 
-                    generarCodigoAleatorio(4) + "-" + 
-                    generarCodigoAleatorio(4) + "-" + 
-                    generarCodigoAleatorio(4) + "-" +
-                    generarCodigoAleatorio(12); 
-    }while(hotel.obtenerReserva(codReserva) != null);
-
-    // Genera la reserva
-    Reserva r = new Reserva(codReserva, -1, numPersonas, tipoHab, cliente, 
-                            importe, fechaEntrada, fechaSalida);
-    hotel.addReserva(r);
-    
-    return codReserva;
-}
+	    // Genera un número de reserva que no exista en la BBDD.
+	    
+	    String codReserva;
+	    do{
+	        codReserva = generarCodigoAleatorio(8) + "-" + 
+	                    generarCodigoAleatorio(4) + "-" + 
+	                    generarCodigoAleatorio(4) + "-" + 
+	                    generarCodigoAleatorio(4) + "-" +
+	                    generarCodigoAleatorio(12); 
+	    }while(hotel.obtenerReserva(codReserva) != null);
+	
+	    // Genera la reserva
+	    Reserva r = new Reserva(codReserva, -1, numPersonas, tipoHab, cliente, 
+	                            importe, fechaEntrada, fechaSalida);
+	    hotel.addReserva(r);
+	    
+	    return codReserva;
+	}
         
-        public void cu03(){
-            System.out.println("Introduzca el código de reserva:");
-            String codReserva = sc.nextLine();
+    public void cu03(){
+		System.out.println("Introduzca el código de reserva:");
+		String codReserva = sc.nextLine();
+		
+		// Buscamos la reserva en la BBDD.
+		Reserva r = hotel.obtenerReserva(codReserva);
+		
+		// Comprueba que la reseva exista. Si no existe muestra un mensaje de error
+		if(r == null){
+		    System.out.println("La reserva no existe");
+		
+		    // Para finalizar la función
+		    return;
+		}
+		// Comprueba que el día de entrada es hoy		
+		if(! r.getFechaEntrada().isEqual(LocalDate.now())){
+		    System.out.println("La fecha de entrada no es hoy");
+		
+		    // Para finalizar la función
+		    return;
+		}
+		
+		// Comprobar las habitaciones que cumplan:
+		//      1. Mismo tipo que esté especificado en la reserva.
+		//      2. Que la cantidad de personas en la habitación sea al 
+		//          menos el número de personas de la reserva.
+		//      3. Que la habitación esté disponible.
+		// Devolver la primera que cumpla estas condiciones.
+		for(Habitacion hab : hotel.getConjuntoHabitaciones()){
+		    if(hab.getCategoria().equals(r.getTipoHabitacion()) 
+		        && hab.getNumeroCamas() >= r.getNumPersonas()
+		        && hab.getEstado().equals("Libre"))
+		    {
+		    	// Se actualiza tanto en la reserva local como en la BD
+		        hotel.asignarHabitacion(r, hab.getNumHabitacion());
+		        
+		        // Se actualiza el estado de la habitación        
+		        hotel.cambiarEstadoHabitacion(hab, "Ocupado");
+		        break;
+		    }
+		}
+		
+		if(r.getNumHabitacion() == -1){
+		    System.out.println("No hay habitaciones disponibles");
+		}else{
+		    System.out.println("Estancia confirmada. Número de habitación: " + r.getNumHabitacion());
+		    // Actualizar la reserva en la BBDD y en el programa.
+		}
+    }
+    
+    // Check-out
+    public void cu04(){
+        System.out.println("Introduzca el código de reserva:");
+        String codReserva = sc.nextLine();
+        
+        // Buscamos la reserva en la BBDD.
+        Reserva r = hotel.obtenerReserva(codReserva);
 
-            
-            // Buscamos la reserva en la BBDD.
-            Reserva r = hotel.obtenerReserva(codReserva);
+        // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
+        if(r == null){
+            System.out.println("La reserva no existe");
 
-            // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
-            if(r == null){
-                System.out.println("La reserva no existe");
+            // Para finalizar la función
+            return;
+        }
 
-                // Para finalizar la función
-                return;
-            }
-            // Comprueba que el día de entrada es hoy
-            if(r.getFechaEntrada() != LocalDate.now()){
-                System.out.println("La fecha de entrada no es hoy");
-
-                // Para finalizar la función
-                return;
-            }
-
-            // Comprobar las habitaciones que cumplan:
-            //      1. Mismo tipo que esté especificado en la reserva.
-            //      2. Que la cantidad de personas en la habitación sea al 
-            //          menos el número de personas de la reserva.
-            //      3. Que la habitación esté disponible.
-            // Devolver la primera que cumpla estas condiciones.
-            for(Habitacion hab : hotel.getConjuntoHabitaciones()){
-                if(hab.getCategoria() == r.getTipoHabitacion() 
-                    && hab.getNumeroCamas() >= r.getNumPersonas()
-                    && hab.getEstado() == "disponible")
-                {
-                    r.setNumHabitacion(hab.getNumHabitacion());
-                    break;
-                }
-            }
-
-            if(r.getNumHabitacion() == -1){
-                System.out.println("No hay habitaciones disponibles");
-            }else{
-                System.out.println("Estancia confirmada. Número de habitación: " + r.getNumHabitacion());
-                // Actualizar la reserva en la BBDD y en el programa.
+        for(Habitacion hab : hotel.getConjuntoHabitaciones()){
+            if(hab.getNumHabitacion() == r.getNumHabitacion()){
+            	hotel.cambiarEstadoHabitacion(hab, "Libre");
             }
         }
-        
-        public void cu04(){
-            System.out.println("Introduzca el código de reserva:");
-            String codReserva = sc.nextLine();
 
-            
-            // Buscamos la reserva en la BBDD.
-            Reserva r = hotel.obtenerReserva(codReserva);
-
-            // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
-            if(r == null){
-                System.out.println("La reserva no existe");
-
-                // Para finalizar la función
-                return;
-            }
-
-            for(Habitacion hab : hotel.getConjuntoHabitaciones()){
-                if(hab.getNumHabitacion() == r.getNumHabitacion()){
-                    hab.setEstado("libre");
-                }
-            }
-
-            System.out.println("Importe de la estancia: " + r.getImporte());
-        }
-        
-        public void cu05(){
-            System.out.println("Introduzca el código de reserva:");
-            String codReserva = sc.nextLine();
-
-            
-            // Buscamos la reserva en la BBDD.
-            Reserva r = hotel.obtenerReserva(codReserva);
-
-            // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
-            if(r == null){
-                System.out.println("La reserva no existe");
-
-                // Para finalizar la función
-                return;
-            }
-
-            // Eliminada la reserva de la BBDD.
-            hotel.eliminarReserva(codReserva);
-
-            // Eliminar la reserva del PC.
-
-            System.out.println("Reserva cancelada");
-        }
-        
+        System.out.println("Importe de la estancia: " + r.getImporte());
+    }
     
+    // Cancelar Reserva
+    public void cu05(){
+        System.out.println("Introduzca el código de reserva:");
+        String codReserva = sc.nextLine();
+
+        // Buscamos la reserva en la BBDD.
+        Reserva r = hotel.obtenerReserva(codReserva);
+
+        // Comprueba que la reseva exista. Si no existe muestra un mensaje de error
+        if(r == null){
+            System.out.println("La reserva no existe");
+
+            // Para finalizar la función
+            return;
+        }
+
+        // Eliminada la reserva de la BBDD.
+        hotel.eliminarReserva(codReserva);
+
+        // Eliminar la reserva del PC.
+
+        System.out.println("Reserva cancelada");
+    }
+        
     private String generarCodigoAleatorio(int longitud){
         String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                      + "abcdefghijklmnopqrstuvwxyz"
@@ -338,7 +327,6 @@ public class Menu {
                                  .collect(Collectors.joining());
 
         return str;
-    }
+    }    
 
-    
-   }
+}

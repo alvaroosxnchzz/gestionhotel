@@ -13,7 +13,6 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 	private Session conexion;
 	
 	public HabitacionDAOImpl(){
-
 		Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
         SessionFactory factory = cfg.buildSessionFactory();
@@ -37,9 +36,13 @@ public class HabitacionDAOImpl implements HabitacionDAO{
 		Transaction tx = conexion.beginTransaction();
 		conexion.delete(h);
 		tx.commit();
-		
 	}
-
+	
+	public void actualizar(Habitacion h) {
+		Transaction tx = conexion.beginTransaction();
+		conexion.update(h);
+		tx.commit();
+	}
 	
 	public List<Habitacion> obtenerTodo() {
 		return conexion.createQuery("SELECT h FROM Habitacion h").getResultList();

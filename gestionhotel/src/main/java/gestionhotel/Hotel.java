@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
-
 public class Hotel{
 	
 	BookingService bs = new BookingService();
@@ -15,9 +13,10 @@ public class Hotel{
     private List<Cliente> conjuntoClientes;
     private List<Reserva> conjuntoReservas;
 
-    
-
     public Hotel() {
+    	// Esto lo haces en el constructor del hotel para realizar 
+    	// una copia local de los datos que haya hasta el momento en
+    	// la BD (usando el BS)
     	conjuntoHabitaciones = bs.obtenerHabitaciones();
         conjuntoClientes = bs.obtenerClientes();
         conjuntoReservas = bs.obtenerReservas();
@@ -27,13 +26,15 @@ public class Hotel{
     	conjuntoHabitaciones.add(h);
     	bs.annadirHabitacion(h);
     }
-
     
     public void addReserva(Reserva r){
         conjuntoReservas.add(r);
         bs.realizarReserva(r);
     }
     
+    // Los datos más actualizados siempre van a estar en la BD. En la copia local
+    // solo tienes los datos que había al iniciar el programa junto con los datos 
+    // que has creado TÚ desde el programa
     public Reserva obtenerReserva(String codReserva) {
     	return bs.buscarReserva(codReserva);
     }
@@ -54,6 +55,11 @@ public class Hotel{
     		bs.borrarReserva(reserv);
     		conjuntoReservas.remove(reserv);	
     	}
+    }
+    
+    public void asignarHabitacion(Reserva r, int numHabitacion) {
+    	r.setNumHabitacion(numHabitacion);
+    	bs.actualizarReserva(r);
     }
 
     public void addCliente(Cliente c){
@@ -86,9 +92,10 @@ public class Hotel{
         tiposHabitaciones.put("superior", 0);
         
         for(Habitacion hab : conjuntoHabitaciones) {
-        
-        	int n = tiposHabitaciones.get(hab.getCategoria());
-        	tiposHabitaciones.replace(hab.getCategoria(), n+1);
+        	if(hab.getNumeroCamas() >= numPersonas) {
+        		int n = tiposHabitaciones.get(hab.getCategoria());
+            	tiposHabitaciones.replace(hab.getCategoria(), n+1);
+        	}
         }
         
         return tiposHabitaciones; 
@@ -96,10 +103,16 @@ public class Hotel{
 	
 	public HashMap<String, HashMap<String, Integer>> consultarDisponibilidad(
     		LocalDate fechaEntrada, LocalDate fechaSalida, int numPersonas){
-		return bs.consultarDisponibilidad(fechaEntrada, fechaSalida, numPersonas, this.conjuntoReservas);
-    	
+		// Se ha añadido el conteo de habitaciones
+		return bs.consultarDisponibilidad(
+				fechaEntrada, fechaSalida, numPersonas, this.conjuntoReservas, 
+				this.contarHabitaciones(numPersonas));	
     }
 	
+	public void cambiarEstadoHabitacion(Habitacion hab, String estado) {
+		hab.setEstado(estado);
+		bs.actualizarHabitacion(hab);
+	}
 	
 	
 	

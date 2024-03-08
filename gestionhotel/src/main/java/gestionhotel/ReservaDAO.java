@@ -7,5 +7,6 @@ public interface ReservaDAO{
     public Reserva obtenerPorCodigo(String codigoReserva);
     public void guardar(Reserva r);
     public void eliminar(Reserva r);
+    public void actualizar(Reserva r);
     public List<Reserva> obtenerTodo();
 }

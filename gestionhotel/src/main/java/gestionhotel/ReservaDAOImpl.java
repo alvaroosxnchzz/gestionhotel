@@ -36,8 +36,13 @@ public class ReservaDAOImpl implements ReservaDAO {
 		conexion.delete(r);
 		tx.commit();
 	}
-
 	
+	public void actualizar(Reserva r) {
+		Transaction tx = conexion.beginTransaction();
+		conexion.update(r);
+		tx.commit();
+	}
+
 	public List<Reserva> obtenerTodo() {
 		return conexion.createQuery("SELECT r FROM Reserva r").getResultList();
 	}

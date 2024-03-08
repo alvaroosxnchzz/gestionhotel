@@ -6,17 +6,17 @@ import javax.persistence.*;
 @Table(name = "Habitacion")
 public class Habitacion {
 	
-	
+	@Column(length=50)
 	@Id
     private int id;
-	public int numHabitacion;
 	public int numeroCamas;
+	// Categoria == Tipo
 	public String categoria;
 	public double precio;
 	public String estado;
 	
-	public Habitacion(int numHabitacion, int numeroCamas, String categoria, String tipo, double precio, String estado) {
-		this.numHabitacion = numHabitacion;
+	public Habitacion(int numHabitacion, int numeroCamas, String categoria, double precio, String estado) {
+		this.id = numHabitacion;
 		this.numeroCamas = numeroCamas;
 		this.categoria = categoria;
 		this.precio = precio;
@@ -24,11 +24,11 @@ public class Habitacion {
 	}
 
 	public int getNumHabitacion() {
-		return numHabitacion;
+		return id;
 	}
 
 	public void setNumHabitacion(int numHabitacion) {
-		this.numHabitacion = numHabitacion;
+		this.id = numHabitacion;
 	}
 
 	public Habitacion() {

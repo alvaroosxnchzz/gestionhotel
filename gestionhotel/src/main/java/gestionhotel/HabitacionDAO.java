@@ -9,6 +9,7 @@ public interface HabitacionDAO{
     public Habitacion obtenerId(int id);
 	public void guardar(Habitacion h);
 	public void eliminar(Habitacion h);
+	public void actualizar(Habitacion h);
 	public List<Habitacion> obtenerTodo();
 
 }
